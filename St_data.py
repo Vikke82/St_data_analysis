@@ -31,9 +31,9 @@ def main():
     file_url = "https://github.com/Vikke82/St_data_analysis/tree/main/data/openpowerlifting-2024-12-28.csv"
     local_path = "data/openpowerlifting-2024-12-28.csv"
    
-    if not os.path.exists(local_path):
-        download_large_file(file_url, local_path)
-        
+    #if not os.path.exists(local_path):
+    download_large_file(file_url, local_path)
+
     st.sidebar.success("Sidebar")
 
     st.title("Interactive Data Viewer for MySQL")
