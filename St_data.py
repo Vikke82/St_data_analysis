@@ -31,7 +31,7 @@ def main():
     """
     )
 
-    data = pd.read_csv(r"data\openpowerlifting-2024-12-28-ipf.csv", low_memory=False)
+    data = pd.read_csv("openpowerlifting-2024-12-28-ipf.csv", low_memory=False)
     st.write(data.columns)
     st.session_state['data'] = data  # Store in session state
 
