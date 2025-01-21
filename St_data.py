@@ -11,6 +11,8 @@ st.set_page_config(
     )
 
 def download_large_file(url, dest_path):
+     
+
     response = requests.get(url, stream=True)
     if response.status_code == 200:
         with open(dest_path, 'wb') as f:
@@ -19,19 +21,19 @@ def download_large_file(url, dest_path):
     else:
         raise Exception(f"Failed to download file: {response.status_code}")
 
-    # URL tiedostolle (raw URL GitHubista)
-    file_url = "https://github.com/Vikke82/St_data_analysis/tree/main/data/openpowerlifting-2024-12-28.csv"
-    local_path = "data/openpowerlifting-2024-12-28.csv"
-
-    if not os.path.exists(local_path):
-        download_large_file(file_url, local_path)
 
 @st.cache_resource
 
 # Streamlit
 def main():
+
+       # URL tiedostolle (raw URL GitHubista)
+    file_url = "https://github.com/Vikke82/St_data_analysis/tree/main/data/openpowerlifting-2024-12-28.csv"
+    local_path = "data/openpowerlifting-2024-12-28.csv"
    
-    download_large_file()
+    if not os.path.exists(local_path):
+        download_large_file(file_url, local_path)
+        
     st.sidebar.success("Sidebar")
 
     st.title("Interactive Data Viewer for MySQL")
