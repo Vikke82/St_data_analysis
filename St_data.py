@@ -1,8 +1,6 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import os
-import requests
 
 
 st.set_page_config(
@@ -10,16 +8,7 @@ st.set_page_config(
     page_icon="📊",
     )
 
-def download_large_file(url, dest_path):
-     
 
-    response = requests.get(url, stream=True)
-    if response.status_code == 200:
-        with open(dest_path, 'wb') as f:
-            for chunk in response.iter_content(chunk_size=8192):
-                f.write(chunk)
-    else:
-        raise Exception(f"Failed to download file: {response.status_code}")
 
 
 @st.cache_resource
@@ -27,12 +16,7 @@ def download_large_file(url, dest_path):
 # Streamlit
 def main():
 
-       # URL tiedostolle (raw URL GitHubista)
-    file_url = "https://github.com/Vikke82/St_data_analysis/tree/main/data/openpowerlifting-2024-12-28.csv"
-    local_path = "data/openpowerlifting-2024-12-28.csv"
-   
-    #if not os.path.exists(local_path):
-    download_large_file(file_url, local_path)
+    
 
     st.sidebar.success("Sidebar")
 
@@ -47,7 +31,7 @@ def main():
     """
     )
 
-    data = pd.read_csv(r"data\openpowerlifting-2024-12-28.csv", low_memory=False)
+    data = pd.read_csv(r"data\openpowerlifting-2024-12-28-ipf.csv", low_memory=False)
     st.write(data.columns)
     st.session_state['data'] = data  # Store in session state
 
